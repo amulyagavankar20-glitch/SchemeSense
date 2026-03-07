@@ -41,7 +41,7 @@ def startup_event():
 
 class ChatRequest(BaseModel):
     query: str
-    user_id: str
+    user_id: Optional[str] = None
 
     @validator('query')
     def query_must_be_valid(cls, v):
