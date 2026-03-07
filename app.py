@@ -1,6 +1,6 @@
-from fastapi import FastAPI, UploadFile, File, HTTPException, BackgroundTasks
+from fastapi import FastAPI, UploadFile, File, HTTPException, BackgroundTasks, Depends, Form
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pydantic import BaseModel, validator
 from typing import Optional
 from mangum import Mangum
 from crewai import Crew
@@ -8,21 +8,30 @@ from src.chatbot.tasks import create_recommendation_task
 from src.chatbot.agents import scholar_agent, support_agent
 from src.verification.production_ocr import ocr_processor
 from src.utils.logger import setup_logger
+from src.auth.middleware import get_current_user
+from src.auth.models import TokenData
 import os
 import shutil
-
 # Setup production logger
 logger = setup_logger("SchemeSense-API")
 
 app = FastAPI(title="SchemeSense API")
 handler = Mangum(app)
 
+from mock_endpoints import router as mock_router
+app.include_router(mock_router)
+
 # Add CORS Middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # For dev, allow all. In production, restrict to specific domains.
+    allow_origins=[
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "https://schemesense-dev.example.com",
+        "https://schemesense-prod.example.com"
+    ],
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
     allow_headers=["*"],
 )
 
@@ -32,9 +41,18 @@ def startup_event():
 
 class ChatRequest(BaseModel):
     query: str
+    user_id: Optional[str] = None
+
+    @validator('query')
+    def query_must_be_valid(cls, v):
+        if len(v.strip()) == 0:
+            raise ValueError('Query cannot be empty')
+        if len(v) > 2000:
+            raise ValueError('Query too long')
+        return v.strip()
 
 @app.post("/scrape")
-async def trigger_scrape():
+async def trigger_scrape(current_user: TokenData = Depends(get_current_user)):
     logger.info("Manual scrape triggered via API.")
     try:
         from src.scraper.collector import run_expanded_scrape
@@ -46,7 +64,7 @@ async def trigger_scrape():
         raise HTTPException(status_code=500, detail="Scraping process failed internally.")
 
 @app.post("/process")
-async def process_data():
+async def process_data(current_user: TokenData = Depends(get_current_user)):
     logger.info("Data processing/embedding triggered via API.")
     try:
         from src.rag.processor import process_and_store_chunks
@@ -58,7 +76,7 @@ async def process_data():
         raise HTTPException(status_code=500, detail="Embedding process failed internally.")
 
 @app.post("/chat")
-async def chat(request: ChatRequest):
+async def chat(request: ChatRequest, current_user: TokenData = Depends(get_current_user)):
     if not request.query:
         logger.warning("Chat request received with empty query.")
         raise HTTPException(status_code=400, detail="Query is required")
@@ -80,17 +98,33 @@ async def chat(request: ChatRequest):
         logger.error(f"Chat failed: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail="AI generation failed.")
 
+ALLOWED_MIME_TYPES = ["image/jpeg", "image/png", "application/pdf"]
+MAX_FILE_SIZE = 25 * 1024 * 1024  # 25MB
+
 @app.post("/verify")
-async def verify(file: UploadFile = File(...)):
+async def verify(
+    file: UploadFile = File(...),
+    user_id: str = Form(...),
+    current_user: TokenData = Depends(get_current_user)
+):
     logger.info(f"Production verification request received for file: {file.filename}")
+    
+    if file.content_type not in ALLOWED_MIME_TYPES:
+        raise HTTPException(status_code=400, detail="Unsupported file type")
+        
+    if user_id != current_user.user_id:
+        raise HTTPException(status_code=403, detail="Unauthorized access")
+
     # Save temporary file
     file_path = f"temp_{file.filename}"
-    # Mock user_id for now - in production this comes from JWT/Auth header
-    user_id = "test_user_production"
     
     try:
+        file_content = await file.read()
+        if len(file_content) > MAX_FILE_SIZE:
+            raise HTTPException(status_code=400, detail="File too large")
+
         with open(file_path, "wb") as buffer:
-            shutil.copyfileobj(file.file, buffer)
+            buffer.write(file_content)
         
         # 1. Process using Production OCR (S3 -> Textract -> DynamoDB)
         result = ocr_processor.process_and_verify(file_path, user_id)

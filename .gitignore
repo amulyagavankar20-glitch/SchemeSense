@@ -1,7 +1,10 @@
+# Dependencies & build
+node_modules/
+dist/
+
 # Environment variables (CRITICAL)
 .env
 .env.staging
-.env.example
 
 # Python
 __pycache__/

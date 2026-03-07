@@ -32,7 +32,10 @@ resource "aws_iam_policy" "bedrock_policy" {
           "bedrock:InvokeModelWithResponseStream"
         ]
         Effect   = "Allow"
-        Resource = "*" # Restrict to specific model ARNs if possible
+        Resource = [
+          "arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-sonnet-4*",
+          "arn:aws:bedrock:us-east-1::foundation-model/amazon.titan-text-embeddings-v2*"
+        ]
       }
     ]
   })
