@@ -3,7 +3,7 @@ import os
 import numpy as np
 import time
 import uuid
-from src.rag.bedrock_processor import get_titan_embedding
+from src.rag.bedrock_processor import get_titan_embedding, VectorStore
 from src.db.dynamo_manager import db_manager
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from config import RAW_DATA_PATH, CHUNK_SIZE, CHUNK_OVERLAP
@@ -11,19 +11,18 @@ from src.utils.logger import setup_logger
 
 logger = setup_logger("RAG-Processor")
 
-def store_in_dynamo(url, domain, chunk_text, embedding):
+def store_in_opensearch(url, domain, chunk_text, embedding):
     try:
-        chunk_data = {
+        store = VectorStore()
+        metadata = {
             'chunk_id': str(uuid.uuid4()),
             'scheme_url': url,
             'domain': domain,
-            'chunk_text': chunk_text,
-            'embedding': embedding,
             'processed_at': int(time.time())
         }
-        db_manager.put_embedding(chunk_data)
+        store.store_embedding(chunk_text, embedding, metadata)
     except Exception as e:
-        logger.error(f"DynamoDB store failed: {e}")
+        logger.error(f"OpenSearch store failed: {e}")
 
 def process_and_store_chunks():
     # 1. Load raw data
@@ -45,7 +44,7 @@ def process_and_store_chunks():
         separators=["\n\n", "\n", " ", ""]
     )
     
-    logger.info("Using DynamoDB as primary storage backend.")
+    logger.info("Using OpenSearch as primary vector storage backend.")
     logger.info(f"Processing {len(schemes)} schemes into chunks...")
     
     chunk_count = 0
@@ -66,7 +65,7 @@ def process_and_store_chunks():
                 if not embedding:
                     continue
                 
-                store_in_dynamo(url, domain, chunk_text, embedding)
+                store_in_opensearch(url, domain, chunk_text, embedding)
                 
                 # Small sleep to be nice to Bedrock API
                 time.sleep(0.2)

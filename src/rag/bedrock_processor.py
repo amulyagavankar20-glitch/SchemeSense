@@ -3,6 +3,10 @@ import json
 import time
 import os
 from botocore.exceptions import ClientError
+from opensearchpy import OpenSearch
+from circuitbreaker import circuit
+import random
+from functools import wraps
 from config import AWS_REGION, BEDROCK_MODEL_ID, TITAN_EMBEDDING_MODEL_ID
 from src.utils.logger import setup_logger
 
@@ -47,6 +51,24 @@ def get_titan_embedding(text: str):
                 raise e
     return None
 
+def retry_with_backoff(max_retries=3, base_delay=1, max_delay=60):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            for attempt in range(max_retries):
+                try:
+                    return func(*args, **kwargs)
+                except Exception as e:
+                    if attempt == max_retries - 1:
+                        raise e
+                    delay = min(base_delay * (2 ** attempt) + random.uniform(0, 1), max_delay)
+                    logger.warning(f"Attempt {attempt + 1} failed, retrying in {delay:.2f}s: {e}")
+                    time.sleep(delay)
+            return None
+        return wrapper
+    return decorator
+
+@circuit(failure_threshold=5, recovery_timeout=60)
 def ask_claude(prompt: str, max_tokens: int = 1000):
     """
     Send prompt to Anthropic Claude 3 Sonnet via Bedrock.
@@ -94,6 +116,10 @@ def ask_claude(prompt: str, max_tokens: int = 1000):
                 raise e
     return None
 
+@retry_with_backoff(max_retries=3)
+def ask_claude_with_retry(prompt: str, max_tokens: int = 1000) -> str:
+    return ask_claude(prompt, max_tokens)
+
 if __name__ == "__main__":
     # Quick test
     test_text = "What is SchemeSense?"
@@ -105,3 +131,35 @@ if __name__ == "__main__":
     print("\nTesting Claude 3 Sonnet...")
     ans = ask_claude("Say hello in one word.")
     print(f"Claude says: {ans}")
+
+class VectorStore:
+    def __init__(self):
+        self.client = OpenSearch(
+            hosts=[{'host': os.getenv('OPENSEARCH_ENDPOINT', 'localhost'), 'port': os.getenv('OPENSEARCH_PORT', 443)}],
+            http_auth=(os.getenv('OPENSEARCH_USER', 'admin'), os.getenv('OPENSEARCH_PASS', 'admin')),
+            use_ssl=True if os.getenv('OPENSEARCH_PORT', 443) == 443 else False,
+            verify_certs=True if os.getenv('OPENSEARCH_PORT', 443) == 443 else False
+        )
+        
+    def store_embedding(self, text: str, embedding: list, metadata: dict):
+        doc = {
+            "text": text,
+            "embedding": embedding,
+            **metadata
+        }
+        self.client.index(index="schemes", body=doc)
+
+    def search_similar(self, query_embedding: list, limit: int = 5) -> list:
+        query = {
+            "size": limit,
+            "query": {
+                "knn": {
+                    "embedding": {
+                        "vector": query_embedding,
+                        "k": limit
+                    }
+                }
+            }
+        }
+        response = self.client.search(index="schemes", body=query)
+        return [hit["_source"] for hit in response["hits"]["hits"]]

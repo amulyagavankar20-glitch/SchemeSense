@@ -15,3 +15,8 @@ pydantic
 pytest
 numpy
 scikit-learn
+PyJWT
+python-multipart
+opensearch-py
+circuitbreaker
+python-json-logger
