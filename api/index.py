@@ -13,12 +13,23 @@ from urls import SCHEME_URLS
 
 app = Flask(__name__)
 
-# Basic CORS handler
+# Handle CORS preflight OPTIONS requests across all routes
+@app.before_request
+def handle_options():
+    if request.method == "OPTIONS":
+        from flask import Response
+        res = Response()
+        res.headers['Access-Control-Allow-Origin'] = '*'
+        res.headers['Access-Control-Allow-Headers'] = 'Content-Type,Authorization'
+        res.headers['Access-Control-Allow-Methods'] = 'GET,POST,PUT,DELETE,OPTIONS'
+        return res, 200
+
+# Basic CORS handler for all responses
 @app.after_request
 def after_request(response):
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    response.headers['Access-Control-Allow-Headers'] = 'Content-Type,Authorization'
+    response.headers['Access-Control-Allow-Methods'] = 'GET,POST,PUT,DELETE,OPTIONS'
     return response
 
 @app.route('/api/schemes', methods=['GET'])
