@@ -20,9 +20,6 @@ resource "aws_dynamodb_table" "schemes" {
     projection_type    = "ALL"
   }
   
-  server_side_encryption {
-    enabled = true
-  }
   
   tags = local.common_tags
 }
@@ -38,9 +35,6 @@ resource "aws_dynamodb_table" "users" {
     type = "S"
   }
   
-  server_side_encryption {
-    enabled = true
-  }
   
   tags = local.common_tags
 }
@@ -79,9 +73,6 @@ resource "aws_dynamodb_table" "conversations" {
     enabled        = true
   }
   
-  server_side_encryption {
-    enabled = true
-  }
   
   tags = local.common_tags
 }
@@ -108,9 +99,6 @@ resource "aws_dynamodb_table" "submissions" {
     projection_type    = "ALL"
   }
   
-  server_side_encryption {
-    enabled = true
-  }
   
   tags = local.common_tags
 }
@@ -126,9 +114,6 @@ resource "aws_dynamodb_table" "embeddings" {
     type = "S"
   }
   
-  server_side_encryption {
-    enabled = true
-  }
   
   tags = local.common_tags
 }

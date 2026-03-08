@@ -9,15 +9,17 @@ if (Test-Path $BuildDir) { Remove-Item -Recurse -Force $BuildDir }
 if (Test-Path $ZipFile) { Remove-Item -Force $ZipFile }
 New-Item -ItemType Directory -Path $BuildDir
 
-# 2. Install dependencies to build folder
-Write-Host "Installing dependencies..."
-pip install -r requirements.txt --target $BuildDir
-
-# 3. Copy source code
-Write-Host "Copying source code..."
+# 2. Copy source code & data to build folder
+Write-Host "Preparing build folder..."
 Copy-Item -Path "src" -Destination $BuildDir -Recurse
+if (Test-Path "data") { 
+    New-Item -ItemType Directory -Path "$BuildDir\data" -Force
+    if (Test-Path "data\schemes_expanded.json") { Copy-Item -Path "data\schemes_expanded.json" -Destination "$BuildDir\data\" }
+}
 Copy-Item -Path "app.py" -Destination $BuildDir
 Copy-Item -Path "config.py" -Destination $BuildDir
+# urls.py is in the parent directory
+Copy-Item -Path "$ParentDir\urls.py" -Destination $BuildDir
 
 # 4. Remove bulky & unnecessary files to save space
 Write-Host "Pruning build folder..."

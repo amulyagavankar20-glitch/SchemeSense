@@ -9,9 +9,8 @@ resource "aws_lambda_function" "api" {
 
   environment {
     variables = {
-      AWS_REGION                 = var.aws_region
-      BEDROCK_MODEL_ID           = var.bedrock_model_id
-      TITAN_EMBEDDING_MODEL_ID   = var.titan_embedding_model_id
+      GEMINI_API_KEY             = var.gemini_api_key
+      GEMINI_MODEL_ID           = var.gemini_model_id
       DYNAMODB_TABLE_SCHEMES     = aws_dynamodb_table.schemes.name
       DYNAMODB_TABLE_USERS       = aws_dynamodb_table.users.name
       DYNAMODB_TABLE_CONVERSATIONS = aws_dynamodb_table.conversations.name

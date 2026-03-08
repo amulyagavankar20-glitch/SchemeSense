@@ -31,3 +31,14 @@ variable "admin_email" {
   type        = string
   default     = "admin@example.com"
 }
+
+variable "gemini_api_key" {
+  type      = string
+  default   = "AIzaSyDEgq8EhMpll72h8VuyYUjdAKLwgHIRPes"
+  sensitive = true
+}
+
+variable "gemini_model_id" {
+  type    = string
+  default = "gemini-2.5-flash"
+}
