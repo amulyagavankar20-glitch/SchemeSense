@@ -56,8 +56,13 @@ def generate_chat_response(prompt: str, max_tokens: int = 1000):
         except urllib.error.HTTPError as e:
             error_body = e.read().decode("utf-8")
             logger.warning(f"Gemini HTTP Error (Attempt {attempt+1}): {e.code} - {error_body}")
+            # Return the actual error on final attempt for easier debugging
+            if attempt == 2:
+                return f"Error: Gemini API returned {e.code}: {error_body[:300]}"
         except Exception as e:
             logger.warning(f"Gemini Request failed (Attempt {attempt+1}): {str(e)}")
+            if attempt == 2:
+                return f"Error: {str(e)}"
             
         wait_time = 2 ** attempt
         time.sleep(wait_time)
