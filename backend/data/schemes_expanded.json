@@ -1,0 +1,330 @@
+[
+  {
+    "scheme_id": "scheme-001",
+    "name": "Pradhan Mantri Awas Yojana (Urban)",
+    "category": "General/Housing",
+    "description": "Affordable housing for urban poor with financial assistance for building or purchasing homes.",
+    "benefits": "Credit Linked Subsidy (CLSS) up to ₹2.67 Lakhs.",
+    "eligibility": "Annual income < ₹18 Lakhs, No pucca house in India."
+  },
+  {
+    "scheme_id": "scheme-002",
+    "name": "National Scholarship Portal (NSP)",
+    "category": "Students",
+    "description": "Centralized IT platform providing various scholarships for students from pre-matric to PhD.",
+    "benefits": "Scholarships up to ₹50,000/year for tuition/maintenance.",
+    "eligibility": "Merit-based, family income typically < ₹8 Lakhs."
+  },
+  {
+    "scheme_id": "scheme-003",
+    "name": "PM Kisan Samman Nidhi",
+    "category": "Farmers",
+    "description": "Direct income support to small and marginal farmers to supplement financial needs.",
+    "benefits": "₹6,000 per year in 3 equal installments.",
+    "eligibility": "Small & marginal farmers owning land up to 2 hectares."
+  },
+  {
+    "scheme_id": "scheme-004",
+    "name": "Ayushman Bharat - PMJAY",
+    "category": "Healthcare",
+    "description": "Health insurance coverage for economically vulnerable families ensuring cashless healthcare.",
+    "benefits": "₹5 Lakhs health cover per family per year for hospitalization.",
+    "eligibility": "Families identified via SECC 2011 data."
+  },
+  {
+    "scheme_id": "scheme-005",
+    "name": "Stand Up India Scheme",
+    "category": "Women",
+    "description": "Bank loans for SC/ST and women entrepreneurs for setting up a greenfield enterprise.",
+    "benefits": "Composite loans between ₹10 Lakhs to ₹1 Crore.",
+    "eligibility": "SC/ST/Women entrepreneurs above 18 years of age."
+  },
+  {
+    "scheme_id": "scheme-006",
+    "name": "Sukanya Samriddhi Yojana",
+    "category": "Women",
+    "description": "Small deposit savings scheme for girl children for their education and marriage.",
+    "benefits": "High interest (8.2%) and tax benefits under Section 80C.",
+    "eligibility": "Parents/guardians of girls below 10 years of age."
+  },
+  {
+    "scheme_id": "scheme-007",
+    "name": "Pradhan Mantri Fasal Bima Yojana (PMFBY)",
+    "category": "Farmers",
+    "description": "Crop insurance scheme for farmers against natural calamities, pests or diseases.",
+    "benefits": "Full insurance cover against crop loss with low premiums.",
+    "eligibility": "All farmers including sharecroppers and tenant farmers."
+  },
+  {
+    "scheme_id": "scheme-008",
+    "name": "PM Krishi Sinchai Yojana (PMKSY)",
+    "category": "Farmers",
+    "description": "Ensuring 'Per Drop More Crop' by providing irrigation facilities and improving water use efficiency.",
+    "benefits": "Financial assistance for drip/sprinkler irrigation systems.",
+    "eligibility": "Farmers owning land with a focus on rain-fed areas."
+  },
+  {
+    "scheme_id": "scheme-009",
+    "name": "Soil Health Card Scheme",
+    "category": "Farmers",
+    "description": "Providing soil health cards to farmers with recommendations on nutrients for better yield.",
+    "benefits": "Free soil testing and customized fertilizer recommendations.",
+    "eligibility": "All farmers across the country."
+  },
+  {
+    "scheme_id": "scheme-010",
+    "name": "Paramparagat Krishi Vikas Yojana (PKVY)",
+    "category": "Farmers",
+    "description": "Support and promotion of organic farming through cluster approach.",
+    "benefits": "Financial support of ₹50,000 per hectare for 3 years.",
+    "eligibility": "Groups of farmers (clusters) moving to organic practices."
+  },
+  {
+    "scheme_id": "scheme-011",
+    "name": "e-NAM (National Agriculture Market)",
+    "category": "Farmers",
+    "description": "Online trading platform for agricultural commodities ensuring better price discovery.",
+    "benefits": "Access to a national market for crops, reducing middleman margins.",
+    "eligibility": "Farmers and farmers' organizations (FPOs)."
+  },
+  {
+    "scheme_id": "scheme-012",
+    "name": "PM Bhartiya Janaushadhi Pariyojana",
+    "category": "Healthcare",
+    "description": "Providing quality generic medicines at affordable prices through dedicated outlets.",
+    "benefits": "Medicines available at 50% to 90% cheaper than branded markets.",
+    "eligibility": "Open to all citizens regardless of income."
+  },
+  {
+    "scheme_id": "scheme-013",
+    "name": "Mission Indradhanush",
+    "category": "Healthcare",
+    "description": "Full immunization coverage for all children and pregnant women.",
+    "benefits": "Free vaccination against 12 life-threatening diseases.",
+    "eligibility": "Children under 2 years and all pregnant women."
+  },
+  {
+    "scheme_id": "scheme-014",
+    "name": "PM Matru Vandana Yojana (PMMVY)",
+    "category": "Women",
+    "description": "Maternity benefit program providing cash incentive for the first/second child.",
+    "benefits": "Cash incentive of ₹5,000 for the first child and ₹6,000 for the second girl child.",
+    "eligibility": "Pregnant and lactating mothers for the first/second live birth."
+  },
+  {
+    "scheme_id": "scheme-015",
+    "name": "Beti Bachao Beti Padhao",
+    "category": "Women",
+    "description": "Campaign aimed at generating awareness and improving the efficiency of welfare services for girls.",
+    "benefits": "Focused education support and protection of the girl child.",
+    "eligibility": "Applicable across all districts with low sex ratios."
+  },
+  {
+    "scheme_id": "scheme-016",
+    "name": "PM Research Fellowship (PMRF)",
+    "category": "Students",
+    "description": "Attracting best talent into research in science and technology for PhD programs.",
+    "benefits": "Fellowships from ₹70,000 to ₹80,000 per month.",
+    "eligibility": "B.Tech/M.Tech/M.Sc students from IITs/NITs/IISERs with high GPA."
+  },
+  {
+    "scheme_id": "scheme-017",
+    "name": "INSPIRE Scholarship",
+    "category": "Students",
+    "description": "Scholarship for Higher Education (SHE) to attract students to basic sciences.",
+    "benefits": "₹80,000 per year for 5 years.",
+    "eligibility": "Top 1% in Class 12th board exams pursuing B.Sc/M.Sc."
+  },
+  {
+    "scheme_id": "scheme-018",
+    "name": "PM Ujjwala Yojana (PMUY)",
+    "category": "General/Housing",
+    "description": "Providing clean cooking fuel (LPG) to women members of BPL households.",
+    "benefits": "Free LPG connection and first refilled cylinder.",
+    "eligibility": "Women from BPL/SC/ST/EBC households."
+  },
+  {
+    "scheme_id": "scheme-019",
+    "name": "PM Jan Dhan Yojana (PMJDY)",
+    "category": "General/Housing",
+    "description": "National Mission for Financial Inclusion to ensure access to banking/savings services.",
+    "benefits": "Zero balance account, accidental insurance of ₹2 Lakhs, RuPay card.",
+    "eligibility": "Any Indian citizen above 10 years of age."
+  },
+  {
+    "scheme_id": "scheme-020",
+    "name": "Atal Pension Yojana (APY)",
+    "category": "General/Housing",
+    "description": "Social security scheme for the unorganized sector providing fixed pension.",
+    "benefits": "Monthly pension of ₹1,000 to ₹5,000 after reaching age 60.",
+    "eligibility": "Subscribers between 18 to 40 years of age."
+  },
+  {
+    "scheme_id": "scheme-021",
+    "name": "PM Shram Yogi Maan-dhan (PM-SYM)",
+    "category": "General/Housing",
+    "description": "Pension scheme for unorganized workers like street vendors, rickshaw pullers, etc.",
+    "benefits": "Assured monthly pension of ₹3,000 after age 60.",
+    "eligibility": "Unorganized workers with monthly income < ₹15,000, age 18-40."
+  },
+  {
+    "scheme_id": "scheme-022",
+    "name": "PM SVANidhi",
+    "category": "General/Housing",
+    "description": "Special micro-credit facility for street vendors to resume their livelihood.",
+    "benefits": "Working capital loan up to ₹10,000, ₹20,000 and ₹50,000 in cycles.",
+    "eligibility": "Street vendors who were vending on or before March 24, 2020."
+  },
+  {
+    "scheme_id": "scheme-023",
+    "name": "Pragati Scholarship for Girls",
+    "category": "Students",
+    "description": "Providing advancement of girls pursuing technical education.",
+    "benefits": "₹50,000 per year for tuition and other expenses.",
+    "eligibility": "Girl students admitted to 1st year diploma/degree programs in AICTE institutes."
+  },
+  {
+    "scheme_id": "scheme-024",
+    "name": "Post Matric Scholarship SC/ST",
+    "category": "Students",
+    "description": "Scholarships to help SC and ST students pursue post-secondary education.",
+    "benefits": "Full tuition fee coverage and maintenance allowance.",
+    "eligibility": "SC/ST students with family income < ₹2.5 Lakhs per year."
+  },
+  {
+    "scheme_id": "scheme-025",
+    "name": "Saksham Scholarship",
+    "category": "Students",
+    "description": "Scholarships for specially-abled students for pursuing technical education.",
+    "benefits": "₹50,000 per year for education Support.",
+    "eligibility": "Students with disability > 40% pursuing technical courses."
+  },
+  {
+    "scheme_id": "scheme-026",
+    "name": "Kishore Vaigyanik Protsahan Yojana (KVPY)",
+    "category": "Students",
+    "description": "Fellowships to students interested in research careers in Basic Sciences.",
+    "benefits": "Monthly stipend and annual contingency grant.",
+    "eligibility": "Students of Class 11th to 1st year graduation in science."
+  },
+  {
+    "scheme_id": "scheme-027",
+    "name": "PM Vishwakarma Scheme",
+    "category": "General/Housing",
+    "description": "Supporting traditional artisans and craftspeople through skill and credit support.",
+    "benefits": "Stipend of ₹500/day during training, loan up to ₹3 Lakhs at 5%.",
+    "eligibility": "Artisans engaged in 18 traditional trades like goldsmith, blacksmith, etc."
+  },
+  {
+    "scheme_id": "scheme-028",
+    "name": "Mahila Shakti Kendra",
+    "category": "Women",
+    "description": "Empowering rural women through community participation and information sharing.",
+    "benefits": "Support services, skill development, and health information.",
+    "eligibility": "Rural women across socio-economic backgrounds."
+  },
+  {
+    "scheme_id": "scheme-029",
+    "name": "PM Garib Kalyan Anna Yojana",
+    "category": "General/Housing",
+    "description": "Providing free food grains to the poor and needy families.",
+    "benefits": "5kg of food grain per person per month for free.",
+    "eligibility": "NFSA beneficiaries (Antyodaya Anna Yojana & PHH)."
+  },
+  {
+    "scheme_id": "scheme-030",
+    "name": "One Stop Centre (OSC)",
+    "category": "Women",
+    "description": "Support for women affected by violence, in private and public spaces.",
+    "benefits": "Medical, legal, psychological, and police help under one roof.",
+    "eligibility": "All women, including girls below 18 years of age."
+  },
+  {
+    "scheme_id": "scheme-031",
+    "name": "Mahila E-Haat",
+    "category": "Women",
+    "description": "Direct online marketing platform for women entrepreneurs.",
+    "benefits": "Free online display of products for better market reach.",
+    "eligibility": "Women entrepreneurs, SHGs, and NGOs."
+  },
+  {
+    "scheme_id": "scheme-032",
+    "name": "PM Kusum Scheme",
+    "category": "Farmers",
+    "description": "Promotion of solar energy among farmers for irrigation.",
+    "benefits": "60% subsidy for installation of solar pumps.",
+    "eligibility": "Individual farmers, FPOs, and cooperatives."
+  },
+  {
+    "scheme_id": "scheme-033",
+    "name": "Pashu Kisan Credit Card",
+    "category": "Farmers",
+    "description": "Financial assistance to livestock farmers for their working capital needs.",
+    "benefits": "Low-interest loans for animal husbandry and dairying.",
+    "eligibility": "Dairy farmers, poultry and fish farmers."
+  },
+  {
+    "scheme_id": "scheme-034",
+    "name": "PM Matsya Sampada Yojana",
+    "category": "Farmers",
+    "description": "Focused development of the fisheries sector through financial support.",
+    "benefits": "Assistance for boat modernization, insurance, and cold chains.",
+    "eligibility": "Fishers, fish farmers, and SHGs in the fisheries sector."
+  },
+  {
+    "scheme_id": "scheme-035",
+    "name": "Working Women Hostel",
+    "category": "Women",
+    "description": "Safe and affordable accommodation for working women.",
+    "benefits": "Heavily subsidized hostel and daycare facilities for children.",
+    "eligibility": "Working women whose income is below the prescribed limit."
+  },
+  {
+    "scheme_id": "scheme-036",
+    "name": "Rashtriya Swasthya Bima Yojana (RSBY)",
+    "category": "Healthcare",
+    "description": "Health insurance for unorganized sector workers.",
+    "benefits": "Smart card-based cashless hospitalization for ₹30,000/year.",
+    "eligibility": "BPL workers in the unorganized sector."
+  },
+  {
+    "scheme_id": "scheme-037",
+    "name": "Integrated Child Development Services (ICDS)",
+    "category": "Healthcare",
+    "description": "Providing food, preschool education, and primary healthcare to children and mothers.",
+    "benefits": "Nutritional supplements and regular health checkups at Anganwadis.",
+    "eligibility": "Children under 6, pregnant and lactating women."
+  },
+  {
+    "scheme_id": "scheme-038",
+    "name": "PM Ayushman Bharat Health Infrastructure Mission",
+    "category": "Healthcare",
+    "description": "Strengthening peripheral health systems and surveillance.",
+    "benefits": "Better critical care blocks and lab diagnostic services.",
+    "eligibility": "Improves healthcare access for all citizens."
+  },
+  {
+    "scheme_id": "scheme-039",
+    "name": "PM Surakshat Matritva Abhiyan",
+    "category": "Healthcare",
+    "description": "Providing quality antenatal care to every pregnant woman.",
+    "benefits": "Free comprehensive health checkups on the 9th of every month.",
+    "eligibility": "All pregnant women in their 2nd or 3rd trimesters."
+  },
+  {
+    "scheme_id": "scheme-040",
+    "name": "Pradhan Mantri Awas Yojana (Gramin)",
+    "category": "General/Housing",
+    "description": "Provide a degree of housing support for the rural homeless.",
+    "benefits": "Assistance of ₹1.2 Lakhs to ₹1.3 Lakhs for house construction.",
+    "eligibility": "Rural households listed as homeless via SECC list."
+  },
+  {
+    "scheme_id": "scheme-041",
+    "name": "Mid-Day Meal Scheme",
+    "category": "Students",
+    "description": "Providing hot cooked meals to children in government schools.",
+    "benefits": "Nutritional intake of 450 calories and 12g protein per day.",
+    "eligibility": "All children studying in classes I-VIII in government schools."
+  }
+]
